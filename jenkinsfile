@@ -27,10 +27,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ Pipeline completed successfully and deployed to Render!'
+            echo ' Pipeline completed successfully and deployed to Render!'
         }
         failure {
-            echo '❌ Pipeline failed. Check Jenkins logs.'
+            echo ' Pipeline failed. Check Jenkins logs.'
         }
     }
 }
