@@ -17,7 +17,7 @@ let image = require('./routes/image');
 
 
 
-const MONGO_URI = `mongodb+srv://machoyamwangi_db_user:Gorjayas2010@cluster0.2jsyouj.mongodb.net/darkroom-dev?retryWrites=true&w=majority`;
+const MONGO_URI = `mongodb+srv://machoyamwangi_db_user:Gorjayas2010@cluster0.2jsyouj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 
 // test if the database has connected successfully
