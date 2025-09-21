@@ -17,7 +17,10 @@ let image = require('./routes/image');
 
 
 
-const MONGO_URI = `mongodb+srv://machoyamwangi_db_user:Gorjayas2010@cluster0.2jsyouj.mongodb.net-dev/?retryWrites=true&w=majority`;
+//const MONGO_URI = `mongodb+srv://machoyamwangi_db_user:Gorjayas2010@ cluster0.2jsyouj.mongodb.net-dev/?retryWrites=true&w=majority`;
+
+const MONGO_URI = 'mongodb+srv://machoyamwangi_db_user:Gorjayas2010@cluster0.2jsyouj.mongodb.net/gallery?retryWrites=true&w=majority';
+
 
 
 // test if the database has connected successfully
