@@ -21,7 +21,7 @@ const {
   MONGO_USERNAME,
   MONGO_PASSWORD} = process.env;
 
-const MONGO_URI = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.2jsyouj.mongodb.net/darkroom?retryWrites=true&w=majority`;
+const MONGO_URI = `mongodb+srv://machoyamwangi_db_user:Gorjayas2010@cluster0.2jsyouj.mongodb.net/darkroom?retryWrites=true&w=majority`;
 
 // silence deprecation warning
 mongoose.set('strictQuery', true);
