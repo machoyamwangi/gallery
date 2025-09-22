@@ -1,39 +1,52 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const dotenv = require('dotenv');
-const bodyParser = require('body-parser');
 
-dotenv.config();
+const methodOverride = require('method-override');
+
+
+require('dotenv').config({ quiet: true, inject: {} });
+
+const index = require('./routes/index');
+const image = require('./routes/image');
+
 const app = express();
 
-// Routes
-let index = require('./routes/index');
-let image = require('./routes/image');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); 
+app.use(methodOverride('_method'));
 
-// MongoDB connection
-const MONGO_URI = process.env.MONGO_URI;
+// Build MongoDB URI from .env
+const {
+  MONGO_USERNAME,
+  MONGO_PASSWORD} = process.env;
 
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log(' Database connected successfully!!'))
-  .catch(err => console.error(' MongoDB connection error:', err));
+const MONGO_URI = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.2jsyouj.mongodb.net/darkroom?retryWrites=true&w=majority`;
+
+// silence deprecation warning
+mongoose.set('strictQuery', true);
+
+// Connect to MongoDB using Mongoose
+mongoose.connect(MONGO_URI)
+  .then(() => console.log('Database connected successfully!!'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // View Engine
 app.set('view engine', 'ejs');
 
-// Public folder
+// Static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// JSON parser middleware
+// Body parser middleware
 app.use(express.json());
 
+// Routes
 app.use('/', index);
 app.use('/image', image);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server is listening at port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server is listening at http://localhost:${PORT}`);
 });
+
+module.exports = app;
