@@ -28,11 +28,26 @@ pipeline {
 
     post {
         success {
-            echo '✅ Pipeline completed successfully and deployed to Render!'
+            slackSend(
+                channel:'#herman_ip1',
+                tokenCredentialId: 'slackbot',
+                message:'Build: ${currentBuild.fullDisplayName} successfully deployed \n web app "https://gallery-3-wyte.onrender.com/" '
+                )
         }
         failure {
-            echo '❌ Pipeline failed. Check Jenkins logs.'
+          slackSend(
+                channel:'#herman_ip1',
+                tokenCredentialId: 'slackbot',
+                message:'Build: ${currentBuild.fullDisplayName} failed to deploy '
+                )
         }
     }
 }
+
+
+
+
+
+
+
 
